@@ -1,0 +1,40 @@
+#!/bin/bash
+#give the start date of the simulation
+export exp_name="Test"
+export start_date="3500-01-01"
+#give the final date of the simulation
+export end_date="3514-12-31" #"2009-01-01"
+# give the number of days you want to spit up your simulation into
+export nr_days="14"
+# experiment name
+# number of domains
+export ndoms=1
+# indicate if you are using a leap or noleap configuration
+export model_calendar="noleap"   # "noleap" if you are using cesm for example; "leap" for reanalysis, i.e., ERA5.
+export user_name="odoensen"   #user name
+export email="onno.doensen@unibe.ch"
+export mail_type="ALL"
+export account="s1171"
+export nnodes_wrf=8      # number of nodes for WRF
+export nnodes_real=1     # number of nodes for REAL
+export nmpi_tasks=36     # number of tasks (36 on mc nodes)
+export partition="normal"
+export real_time="00:30:00"
+export wrf_time="10:00:00"
+export post_time="00:30:00" 
+export wrf_version="4.4"
+# give path to the compile executables with is normally located in project
+#export path_wrf_executables="/project/s905/santosgo/WRF-COMPILATION-V3.8.1_Nov2020/WRFV3.8.1_intel/run/"
+#export path_wrf_executables="/project/s905/santosgo/WRF-COMPILATION-V3.8.1_Dec2020_NoLeap/WRFV3.8.1_intel/run/"
+export path_wrf_executables="/project/s1171/odoensen/WRFv4.4_noleap/run/"
+# the exp is used to create a folder in scratch containing the compiled executables. An extra folder is created, as different experiments use different executables
+export exp="cesm_dec2020"    # option to have different compilations of wrf runing at the same time. Mainly used for different paleo experiments
+
+# this section is for the postprocessing, compressing and storing on project again
+# give the names of the variables that you would like extract from the wrfouts using cdo
+export var_list=("T2" "RAINC" "RAINNC") #("T2" "RAINC" "RAINSH" "RAINNC" "SMOIS" "TSLB" "SWDOWN" "ALBEDO")
+# provide the folder where to store the wrfout.gz, wrfrst.gz and extracted variables (path_project_post)
+# THESE FOLDERS MUST EXIST IN PROJECT ALREADY
+export path_project_wrfout="/project/s1171/odoensen/${exp_name}/"
+export path_project_wrfrst=$path_project_wrfout
+export path_project_post=$path_project_wrfout
